@@ -12,6 +12,17 @@ import DesktopNav from './DesktopNav';
 const Nav = () => {
   const isUserLoggedIn = true;
 
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const updateProviders = async () => {
+      const providers = await getProviders();
+      setProviders(providers);
+    };
+
+    updateProviders();
+  }, []);
+
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
       <Link href='/' className='flex gap-2 flex-center'>
@@ -26,10 +37,7 @@ const Nav = () => {
         <p className='logo_text'>Promptopia</p>
       </Link>
 
-      {/* Desktop Nav */}
-      <div className='sm:flex hidden'>
-        {isUserLoggedIn ? <DesktopNav /> : <></>}
-      </div>
+      <DesktopNav isUserLoggedIn={isUserLoggedIn} providers={providers} />
     </nav>
   );
 };
