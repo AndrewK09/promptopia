@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { signIn, signOut } from 'next-auth/react';
+import ProvidersList from './ProvidersList';
 
 const DesktopNav = ({ isUserLoggedIn, providers }) => {
   return (
@@ -26,19 +27,7 @@ const DesktopNav = ({ isUserLoggedIn, providers }) => {
           </Link>
         </div>
       ) : (
-        <>
-          {providers &&
-            Object.values(providers).map((provider) => (
-              <button
-                type='button'
-                key={provider.name}
-                onClick={() => signIn(provider.id)}
-                className='black_btn'
-              >
-                Sign In
-              </button>
-            ))}
-        </>
+        <ProvidersList providers={providers} />
       )}
     </div>
   );
