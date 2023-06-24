@@ -6,8 +6,8 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import DesktopNav from './DesktopNav';
+import MobileNav from './MobileNav';
 
-// 1:07:26
 
 const Nav = () => {
   const isUserLoggedIn = true;
@@ -38,6 +38,8 @@ const Nav = () => {
       </Link>
 
       <DesktopNav isUserLoggedIn={isUserLoggedIn} providers={providers} />
+
+      <MobileNav isUserLoggedIn={isUserLoggedIn} providers={providers} />
     </nav>
   );
 };
