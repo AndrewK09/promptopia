@@ -8,12 +8,10 @@ import Image from 'next/image';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 
-
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
-
   useEffect(() => {
     const updateProviders = async () => {
       const providers = await getProviders();
@@ -37,9 +35,9 @@ const Nav = () => {
         <p className='logo_text'>Promptopia</p>
       </Link>
 
-      <DesktopNav isUserLoggedIn={isUserLoggedIn} providers={providers} />
+      <DesktopNav session={session} providers={providers} />
 
-      <MobileNav isUserLoggedIn={isUserLoggedIn} providers={providers} />
+      <MobileNav session={session} providers={providers} />
     </nav>
   );
 };
