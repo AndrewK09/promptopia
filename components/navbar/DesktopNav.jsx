@@ -3,10 +3,10 @@ import Image from 'next/image';
 import { signIn, signOut } from 'next-auth/react';
 import ProvidersList from './ProvidersList';
 
-const DesktopNav = ({ isUserLoggedIn, providers }) => {
+const DesktopNav = ({ session, providers }) => {
   return (
     <div className='sm:flex hidden'>
-      {isUserLoggedIn ? (
+      {session?.user ? (
         <div className='flex gap-3 md:gap-5'>
           <Link href='/create-prompt' className='black_btn'>
             Create Post
@@ -18,7 +18,7 @@ const DesktopNav = ({ isUserLoggedIn, providers }) => {
 
           <Link href='/profile'>
             <Image
-              src='/assets/images/logo.svg'
+              src={session?.user.image}
               alt='profile'
               width={37}
               height={37}

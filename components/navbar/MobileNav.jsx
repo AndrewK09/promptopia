@@ -5,15 +5,15 @@ import Image from 'next/image';
 
 import ProvidersList from './ProvidersList';
 
-const MobileNav = ({ isUserLoggedIn, providers }) => {
+const MobileNav = ({ session, providers }) => {
   const [isToggleDropdown, setToggleDropdown] = useState(false);
 
   return (
-    <div className='sm:flex flex relative'>
-      {isUserLoggedIn ? (
+    <div className='sm:hidden flex relative'>
+      {session?.user ? (
         <div className='flex'>
           <Image
-            src='/assets/images/logo.svg'
+            src={session?.user.image}
             alt='profile'
             width={37}
             height={37}
@@ -47,7 +47,7 @@ const MobileNav = ({ isUserLoggedIn, providers }) => {
                   signOut();
                 }}
               >
-                Sign Out{' '}
+                Sign Out
               </button>
             </div>
           )}
